@@ -11,7 +11,7 @@
                     {{ Form::open(array('url' => 'foo/bar')) }}
                     <div class="form-group">
                         {{Form::label('nombre', 'Nombre Completo')}}
-                        {{Form::text('nombre', '',array('class' => 'form-control'))}}
+                        {{Form::text('nombre', '',array('class' => 'form-control', 'required' => 'required'))}}
                     </div>
                     <div class="form-group">
                         {{Form::label('establecimiento', 'Establecimiento')}}
@@ -33,6 +33,8 @@
                         {{Form::label('queja', 'Queja')}}
                         {{Form::textarea('queja', '',array('class' => 'form-control'))}}
                     </div>
+
+                    {{Form::submit('Enviar',array('class' => 'btn btn-success float-right'))}}
                     {{ Form::close() }}
                 </div>
             </div>
