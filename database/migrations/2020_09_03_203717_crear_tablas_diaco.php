@@ -15,10 +15,12 @@ class CrearTablasDiaco extends Migration
     {
         Schema::create('consumidores', function (Blueprint $table) {
             $table->id();
+            $table->string('nit')->nullable()->default('C/F');
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('direccion');
-            $table->string('telefono');
+            $table->integer('telefono')->nullable();
+            $table->boolean('genero');
             $table->timestamps();
         });
 
@@ -39,9 +41,10 @@ class CrearTablasDiaco extends Migration
 
         Schema::create('comercios', function (Blueprint $table) {
             $table->id();
+            $table->string('nit');
             $table->string('nombre');
             $table->string('direccion');
-            $table->string('telefono');
+            $table->integer('telefono');
             $table->unsignedBigInteger('id_municipio');            
             $table->foreign('id_municipio')->references('id')->on('municipios');
             $table->timestamps();
@@ -49,7 +52,10 @@ class CrearTablasDiaco extends Migration
 
         Schema::create('quejas', function (Blueprint $table) {
             $table->id();
-            $table->string('descrpcion');
+            $table->integer('factura');
+            $table->longText('detalle_queja');
+            $table->longText('detalle_solucion')->nullable();
+            $table->date('fecha_facura');
             $table->unsignedBigInteger('id_comercio');            
             $table->foreign('id_comercio')->references('id')->on('comercios');
             $table->unsignedBigInteger('id_consumidor');            
