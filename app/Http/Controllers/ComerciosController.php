@@ -31,7 +31,7 @@ class ComerciosController extends Controller
         if ($id != null) {  
             // Cargar los datos que pertenecen al id proporcionado
             $comercio = Comercio::find($id);
-            $nit = $comercio->id;
+            $nit = $comercio->nit;
             $nombre = $comercio->nombre;
             $direccion = $comercio->direccion;
             $telefono = $comercio->telefono;

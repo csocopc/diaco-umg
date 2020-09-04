@@ -32,3 +32,8 @@ Route::get('/comercios/agregar', 'ComerciosController@agregar')->middleware('aut
 Route::get('/comercios/editar/{id?}', 'ComerciosController@agregar')->middleware('auth');
 Route::post('/comercios/guardar', 'ComerciosController@guardar')->middleware('auth');
 Route::post('/comercios/eliminar', 'ComerciosController@eliminar')->middleware('auth');
+
+
+// Rutas para quejas
+Route::get('/quejas/index', 'QuejasController@index')->middleware('auth');
+Route::get('/quejas/detalles/{id}', 'QuejasController@detalles')->middleware('auth');

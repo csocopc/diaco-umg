@@ -36,6 +36,9 @@
                         <li>
                             <a href="{{url('/comercios/index')}}">Comercios</a>
                         </li>
+                        <li>
+                            <a href="{{url('/quejas/index')}}">Lista de quejas</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
