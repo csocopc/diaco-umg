@@ -7,7 +7,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -155,6 +155,7 @@
       <option name="presentableId" value="Default" />
       <updated>1599175127870</updated>
       <workItem from="1599175129676" duration="11113000" />
+      <workItem from="1599251997037" duration="87000" />
     </task>
     <servers />
   </component>
@@ -180,7 +181,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/ComerciosController.php</url>
-          <line>40</line>
+          <line>41</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
