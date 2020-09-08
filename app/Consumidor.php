@@ -11,5 +11,7 @@ class Consumidor extends Model
         'apellidos'
     ];
 
+    protected $primaryKey = 'dpi';
+
     protected $table = 'consumidores';
 }

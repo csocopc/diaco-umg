@@ -31,7 +31,7 @@
                             </tr>
                             <tr>
                                 <td>Fecha Factura</td>                                
-                                <td>{{$queja->fecha_facura}}</td>
+                                <td>{{$queja->fecha_factura}}</td>
                             </tr>
                             <tr>
                                 <td>Detalle Queja</td>                                                                

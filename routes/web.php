@@ -13,14 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/queja', function () {
-    return view('queja');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -37,3 +29,23 @@ Route::post('/comercios/eliminar', 'ComerciosController@eliminar')->middleware('
 // Rutas para quejas
 Route::get('/quejas/index', 'QuejasController@index')->middleware('auth');
 Route::get('/quejas/detalles/{id}', 'QuejasController@detalles')->middleware('auth');
+
+
+/////// Paginas publicas
+// Consumidor
+Route::get('/', 'PublicController@index');
+Route::get('/queja/consumidor', 'PublicController@consumidor');
+Route::post('/queja/consumidor', 'PublicController@consumidor');
+Route::post('/queja/consumidor-guardar', 'PublicController@consumidorGuardar');
+
+/// Comercios
+Route::get('/queja/comercio', 'PublicController@comercio');
+Route::post('/queja/comercio', 'PublicController@comercio');
+Route::post('/queja/comercio-guardar', 'PublicController@comercioGuardar');
+
+/// Queja
+Route::get('/queja/detalle', 'PublicController@detalle');
+Route::post('/queja/detalle-guardar', 'PublicController@detalleGuardar');
+
+/// Queja
+Route::get('/queja/final/{id}', 'PublicController@paginaFinal');

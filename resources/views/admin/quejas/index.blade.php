@@ -32,7 +32,7 @@
                             @foreach ($quejas as $queja)
                                 <tr>
                                     <td>{{$queja->factura}}</td>
-                                    <td>{{$queja->fecha_facura}}</td>
+                                    <td>{{$queja->fecha_factura}}</td>
                                     <td>{{$queja->detalle_queja}}</td>
                                     <td>{{$queja->detalle_solucion}}</td>
                                     <td>{{$queja->consumidor->nombres}} {{$queja->consumidor->apellidos}}</td>

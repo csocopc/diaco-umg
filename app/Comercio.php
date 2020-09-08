@@ -10,6 +10,8 @@ class Comercio extends Model
         'nombre', 'id_municipio'
     ];
 
+    protected $primaryKey = 'nit';
+
     public function municipio()
     {
     	return $this->belongsTo('App\Municipio', 'id_municipio');
