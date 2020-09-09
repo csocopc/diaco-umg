@@ -91,7 +91,7 @@ class PublicController extends Controller
             }                
         }      
 
-        $request->session()->put('quejaConsumidor', (isset($consumidor)) ? $consumidor->dpi : 'na');
+        $request->session()->put('dpi', (isset($consumidor->dpi)) ? $consumidor->dpi : 'na');
         return redirect('/queja/comercio');  
     }    
 
@@ -129,23 +129,22 @@ class PublicController extends Controller
         $direccion = $request->input('direccion');
         $telefono = $request->input('telefono');
         $id_municipio = $request->input('id_municipio');
-        //$id_departamento = $request->input('id_departamento');
 
         $comercio = Comercio::find($nit);
 
         if ($comercio == null) {
             $comercio = new Comercio();
         }
+        
 
         $comercio->nit = $nit;
         $comercio->nombre = $nombre;
         $comercio->direccion = $direccion;
         $comercio->telefono = $telefono;
         $comercio->id_municipio = $id_municipio;
-        //$comercio->id_departamento = $id_departamento;
         $comercio->save();
 
-        $request->session()->put('quejaComercio', (isset($comercio)) ? $comercio->nit : 'na');
+        $request->session()->put('nit', $comercio->nit);
         return redirect('/queja/detalle');  
     }    
 
@@ -163,18 +162,16 @@ class PublicController extends Controller
         $detalle_queja = $request->input('detalle_queja');
         $detalle_solucion = $request->input('detalle_solucion');        
 
-        $dpi_consumidor = 1; //$request->session()->get('quejaConsumidor');
-        $nit_comercio = 2;// $request->session()->get('quejaComercio');
-
-        //dd($request->session());
+        $dpi = $request->session()->get('dpi');
+        $nit = $request->session()->get('nit');
         
         $queja = new Queja();                
         $queja->factura = $factura;
         $queja->fecha_factura = $fecha_factura;
         $queja->detalle_queja = $detalle_queja;
         $queja->detalle_solucion = $detalle_solucion;
-        $queja->nit_comercio = $nit_comercio;
-        $queja->dpi_consumidor = $dpi_consumidor;
+        $queja->nit_comercio = $nit;
+        $queja->dpi_consumidor = $dpi;
         $queja->save();
 
         return redirect('/queja/final/' . $queja->id);

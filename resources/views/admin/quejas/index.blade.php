@@ -36,7 +36,7 @@
                                     <td>{{$queja->detalle_queja}}</td>
                                     <td>{{$queja->detalle_solucion}}</td>
                                     <td>{{$queja->consumidor->nombres}} {{$queja->consumidor->apellidos}}</td>
-                                    <td>{{$queja->comercio->nit}} -{{$queja->comercio->nombre}}</td>
+                                    <td>{{$queja->comercio->nombre}} (NIT: {{$queja->comercio->nit}})</td>
                                     <td>
                                         <a href="{{url("/quejas/detalles/$queja->id")}}">Detalles</a>
                                     </td>

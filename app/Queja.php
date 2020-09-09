@@ -9,12 +9,12 @@ class Queja extends Model
 
     public function consumidor()
     {
-    	return $this->belongsTo('App\Consumidor', 'id_consumidor');
+    	return $this->belongsTo('App\Consumidor', 'dpi_consumidor');
     }
 
     public function comercio()
     {
-    	return $this->belongsTo('App\Comercio', 'id_comercio');
+    	return $this->belongsTo('App\Comercio', 'nit_comercio');
     }
 
     public function municipio()

@@ -8,6 +8,11 @@
                 <div class="card">
                     <div class="card-header">{{ __('Datos de la queja') }}</div>
                     <div class="card-body">
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <br>
+
                         {{ Form::open(array('id' => 'formulario-agregar', 'url' => '/queja/detalle-guardar')) }}
 
                             <div class="form-row">                                
@@ -33,8 +38,9 @@
                                 </div>
                             </div>                        
 
-                            {{Form::submit('Siguiente',['class' => 'btn btn-primary float-right'])}}
-                            <a href="{{url('/queja/comercio')}}">Comercio</a>
+                            <button type="submit" class="btn btn-primary float-right">
+                                Siguiente <img src="https://www.iconfinder.com/data/icons/essentials-pack/96/right_arrow_next_forward_navigation-24.png">
+                            </button>
                         {{ Form::close() }}                        
                     </div>
                 </div>
