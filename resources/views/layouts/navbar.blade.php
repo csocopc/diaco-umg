@@ -13,6 +13,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('/quejas/index')}}">Lista de quejas</a>
                 </li>                            
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/reportes')}}">Reportes</a>
+                </li>                            
             </ul>
 
             <ul class="navbar-nav ml-auto">

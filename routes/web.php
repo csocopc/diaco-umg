@@ -25,6 +25,11 @@ Route::get('/comercios/editar/{id?}', 'ComerciosController@agregar')->middleware
 Route::post('/comercios/guardar', 'ComerciosController@guardar')->middleware('auth');
 Route::post('/comercios/eliminar', 'ComerciosController@eliminar')->middleware('auth');
 
+// Admin - Reportes
+Route::get('/reportes', 'ReportesController@index')->middleware('auth');
+Route::post('/reportes/obtener', 'ReportesController@obtenerDatos')->middleware('auth');
+Route::get('/reportes/obtener', 'ReportesController@obtenerDatos')->middleware('auth');
+
 
 // Rutas para quejas
 Route::get('/quejas/index', 'QuejasController@index')->middleware('auth');

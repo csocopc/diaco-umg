@@ -15,10 +15,5 @@ class Queja extends Model
     public function comercio()
     {
     	return $this->belongsTo('App\Comercio', 'nit_comercio');
-    }
-
-    public function municipio()
-    {
-    	return $this->belongsTo('App\Municipio', 'id_municipio');
-    }
+    }    
 }
