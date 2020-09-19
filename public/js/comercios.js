@@ -11,6 +11,18 @@ $( document ).ready(function() {
 		formulario.submit();
     });
 
+    $( "#nit" ).change(function() {
+		var formulario = $( "#formulario-agregar" );
+
+		$('<input>').attr({
+		    type: 'hidden',
+		    name: 'nit-actualizado',
+		    value: '1'
+		}).appendTo(formulario);
+
+		formulario.submit();
+    });
+
 
     $( ".eliminar" ).on('click', function (e) {
     	e.preventDefault();
@@ -25,4 +37,19 @@ $( document ).ready(function() {
 			});
     	}
     });
+
+
+
+    $("#frm-buscar-comercio").on('submit', function(e){
+    	e.preventDefault();
+    	var textoDeBusqueda = $('#search').val();
+    	window.location.href = "/comercios/index/" + textoDeBusqueda;
+    });
+
+    $("#frm-buscar-queja").on('submit', function(e){
+    	e.preventDefault();
+    	var textoDeBusqueda = $('#search').val();
+    	window.location.href = "/quejas/index/" + textoDeBusqueda;
+    });
+    
 });

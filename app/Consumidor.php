@@ -14,4 +14,9 @@ class Consumidor extends Model
     protected $primaryKey = 'dpi';
 
     protected $table = 'consumidores';
+
+    public function municipio()
+    {
+    	return $this->belongsTo('App\Municipio', 'id_municipio');
+    }
 }

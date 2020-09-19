@@ -7,27 +7,24 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/comercios/index')}}">Comercios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/quejas/index')}}">Lista de quejas</a>
-                </li>                            
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/reportes')}}">Reportes</a>
-                </li>                            
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/comercios/index')}}">Comercios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/quejas/index')}}">Lista de quejas</a>
+                    </li>                            
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/reportes')}}">Reportes</a>
+                    </li> 
+                @endauth                           
             </ul>
 
             <ul class="navbar-nav ml-auto">
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
+                    </li>                    
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

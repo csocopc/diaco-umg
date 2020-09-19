@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Queja extends Model
 {    
+	protected $dates = [
+		'fecha_factura'
+	];
 
     public function consumidor()
     {
@@ -16,4 +19,9 @@ class Queja extends Model
     {
     	return $this->belongsTo('App\Comercio', 'nit_comercio');
     }    
+
+    public function sucursal()
+    {
+    	return $this->belongsTo('App\Sucursal', 'id_sucursal');
+    }        
 }

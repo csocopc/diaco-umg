@@ -17,11 +17,17 @@
                 </div>
 
                 <div class="card-body">
+                    <form class="form-inline my-2 my-lg-0" id="frm-buscar-comercio" >
+                        <input id="search" class="form-control mr-sm-4 col-md-4" type="search" placeholder="Search" aria-label="Search" value="{{$q ?? ''}}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    <hr>
                     <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark">
                             <tr>
                                 <th>NIT</th>
                                 <th>Nombre</th>
+                                <th>Sucursal</th>
                                 <th>Direccion</th>
                                 <th>Departamento</th>
                                 <th>Municipio</th>
@@ -30,19 +36,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($comercios as $comercio)
+                            @foreach ($sucursal as $sucursal)
                                 <tr>
-                                    <td>{{$comercio->nit}}</td>
-                                    <td>{{$comercio->nombre}}</td>
-                                    <td>{{$comercio->direccion}}</td>
-                                    <td>{{$comercio->municipio->departamento->nombre}}</td>
-                                    <td>{{$comercio->municipio->nombre}}</td>
-                                    <td>{{$comercio->telefono}}</td>
+                                    <td>{{$sucursal->comercio->nit}}</td>
+                                    <td>{{$sucursal->comercio->nombre}}</td>
+                                    <td>{{$sucursal->nombre}}</td>
+                                    <td>{{$sucursal->direccion}}</td>
+                                    <td>{{$sucursal->municipio->departamento->nombre}}</td>
+                                    <td>{{$sucursal->municipio->nombre}}</td>
+                                    <td>{{$sucursal->telefono}}</td>
                                     <td>
-                                        <a href="{{url("/comercios/editar/$comercio->id")}}" class="editar" data-id="{{$comercio->id}}">
+                                        <a href="{{url("/comercios/editar/$sucursal->id")}}" class="editar" data-id="{{$sucursal->id}}">
                                             <img src="https://www.iconfinder.com/data/icons/flat-business-icons/128/pencil-24.png" alt="">
                                         </a>
-                                        <a href="#" class="eliminar" data-id="{{$comercio->id}}">
+                                        <a href="#" class="eliminar" data-id="{{$sucursal->id}}">
                                             <img src="https://www.iconfinder.com/data/icons/ui-navigation-1/152/close-24.png" alt="">
                                         </a>
                                     </td>

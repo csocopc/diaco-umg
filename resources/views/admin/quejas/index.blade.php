@@ -16,14 +16,18 @@
                 </div>
 
                 <div class="card-body">
+                    <form class="form-inline my-2 my-lg-0" id="frm-buscar-queja" >
+                        <input id="search" class="form-control mr-sm-4 col-md-4" type="search" placeholder="Search" aria-label="Search" value="{{$q ?? ''}}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    <hr>
                     <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Factura</th>
-                                <th>Fecha Factura</th>
-                                <th>Queja</th>
-                                <th>Solucion Propuesta</th>
+                                <th>Fecha Factura</th>                                
                                 <th>Consumidor</th>
+                                <th>NIT</th>
                                 <th>Comercio</th>
                                 <th></th>
                             </tr>
@@ -32,11 +36,24 @@
                             @foreach ($quejas as $queja)
                                 <tr>
                                     <td>{{$queja->factura}}</td>
-                                    <td>{{$queja->fecha_factura}}</td>
-                                    <td>{{$queja->detalle_queja}}</td>
-                                    <td>{{$queja->detalle_solucion}}</td>
-                                    <td>{{$queja->consumidor->nombres}} {{$queja->consumidor->apellidos}}</td>
-                                    <td>{{$queja->comercio->nombre}} (NIT: {{$queja->comercio->nit}})</td>
+                                    <td>{{$queja->fecha_factura->toFormattedDateString()}}</td>
+                                    <td>
+                                        @if($queja->consumidor != null)
+                                            {{$queja->consumidor->nombres}} {{$queja->consumidor->apellidos}}
+                                        @else 
+                                            ANONIMO
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($queja->sucursal->comercio != null)
+                                            {{$queja->sucursal->comercio->nit}}
+                                        @endif                                                                     
+                                    </td>
+                                    <td>
+                                        @if($queja->sucursal->comercio != null)
+                                            {{$queja->sucursal->comercio->nombre}}
+                                        @endif                                        
+                                    </td>                                    
                                     <td>
                                         <a href="{{url("/quejas/detalles/$queja->id")}}">Detalles</a>
                                     </td>

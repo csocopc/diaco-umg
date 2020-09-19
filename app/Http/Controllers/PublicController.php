@@ -8,6 +8,7 @@ use App\Consumidor;
 use App\Comercio;
 use App\Municipio;
 use App\Queja;
+use App\Sucursal;
 
 class PublicController extends Controller
 {
@@ -19,17 +20,35 @@ class PublicController extends Controller
 
     public function consumidor (Request $request) 
     {
+        $actualizado = false;
+        if ($request->has('identificador-actualizado')) 
+        {
+           $consumidor = Consumidor::find($request->input('dpi'));
+           if ($consumidor != null ) {
+                $dpi = $consumidor->dpi;
+                $nit = $consumidor->nit;
+                $nombres = $consumidor->nombres;
+                $apellidos = $consumidor->apellidos;
+                $direccion = $consumidor->direccion;
+                $telefono = $consumidor->telefono;
+                $genero = $consumidor->genero;
+                $id_municipio = $consumidor->id_municipio;
+                $id_departamento = $consumidor->municipio->departamento->id;
+                $actualizado = true;
+           }
+        }
 
-        $nit = $request->input('nit');
-        $dpi = $request->input('dpi');
-        $nombres = $request->input('nombres');
-        $apellidos = $request->input('apellidos');
-        $direccion = $request->input('direccion');
-        $telefono = $request->input('telefono');
-        $genero = $request->input('genero');
-        $id_municipio = $request->input('id_municipio');
-        $id_departamento = $request->input('id_departamento');
-
+        if (!$actualizado) {
+            $nit = $request->input('nit');
+            $dpi = $request->input('dpi');
+            $nombres = $request->input('nombres');
+            $apellidos = $request->input('apellidos');
+            $direccion = $request->input('direccion');
+            $telefono = $request->input('telefono');
+            $genero = $request->input('genero');
+            $id_municipio = $request->input('id_municipio');
+            $id_departamento = $request->input('id_departamento');
+        }        
 
         $departamentos = Departamento::all()->sortBy('nombre');
         $idDepartamento = (isset($id_departamento) != null) ? $id_departamento : $departamentos->first()->id;
@@ -47,7 +66,8 @@ class PublicController extends Controller
                 'direccion',
                 'telefono',
                 'genero',
-                'id_departamento'
+                'id_departamento',
+                'id_municipio'
             )
         );
     }     
@@ -91,18 +111,43 @@ class PublicController extends Controller
             }                
         }      
 
-        $request->session()->put('dpi', (isset($consumidor->dpi)) ? $consumidor->dpi : 'na');
+        $request->session()->put('dpi', (isset($dpi)) ? $dpi : 'na');
+        $request->session()->save();
         return redirect('/queja/comercio');  
     }    
 
     public function comercio (Request $request) 
-    {        
-        $nit = $request->input('nit');
-        $nombre = $request->input('nombre');
-        $direccion = $request->input('direccion');
-        $telefono = $request->input('telefono');        
-        $id_municipio = $request->input('id_municipio');
-        $id_departamento = $request->input('id_departamento');
+    {    
+        if ($request->has('identificador-actualizado')) 
+        {
+           $comercio = Comercio::find($request->input('nit'));
+           if ($comercio != null ) {
+                $nit = $comercio->nit;
+                $nombre = $comercio->nombre;                
+                $sucursales = $comercio->sucursales->pluck('nombre', 'id');
+           }
+
+           $sucursal = Sucursal::find($request->input('id_sucursal'));
+           if ($sucursal != null) {
+                $direccion = $sucursal->direccion;
+                $telefono = $sucursal->telefono;        
+                $id_municipio = $sucursal->id_municipio;                
+                $id_departamento = $sucursal->municipio->departamento->id;                
+                $nombre_sucursal = $sucursal->nombre;
+                $id_sucursal = $sucursal->id;
+           }
+        }
+
+        $nit = isset($nit) ? $nit : $request->input('nit');
+        $nombre = isset($nombre) ? $nombre : $request->input('nombre');
+        $direccion = isset($direccion) ? $direccion : $request->input('direccion');
+        $telefono = isset($telefono) ? $telefono : $request->input('telefono');        
+        $id_municipio = isset($id_municipio) ? $id_municipio : $request->input('id_municipio');
+        $id_departamento = isset($id_departamento) ? $id_departamento : $request->input('id_departamento');   
+        $id_sucursal = isset($id_sucursal) ? $id_sucursal : $request->input('id_sucursal');   
+        $nombre_sucursal = isset($nombre_sucursal) ? $nombre_sucursal : $request->input('nombre_sucursal');   
+        $sucursales = isset($sucursales) ? $sucursales : array();
+
 
         $departamentos = Departamento::all()->sortBy('nombre');
         $idDepartamento = (isset($id_departamento) != null) ? $id_departamento : $departamentos->first()->id;
@@ -117,7 +162,11 @@ class PublicController extends Controller
                 'nombre',
                 'direccion',
                 'telefono',
-                'id_departamento'
+                'id_departamento',
+                'id_municipio',
+                'sucursales',
+                'id_sucursal',
+                'nombre_sucursal'
              )
         );
     } 
@@ -129,22 +178,33 @@ class PublicController extends Controller
         $direccion = $request->input('direccion');
         $telefono = $request->input('telefono');
         $id_municipio = $request->input('id_municipio');
+        $id_sucursal = $request->input('id_sucursal');
+        $nombre_sucursal = $request->input('nombre_sucursal');
 
         $comercio = Comercio::find($nit);
-
         if ($comercio == null) {
             $comercio = new Comercio();
         }
         
-
         $comercio->nit = $nit;
         $comercio->nombre = $nombre;
-        $comercio->direccion = $direccion;
-        $comercio->telefono = $telefono;
-        $comercio->id_municipio = $id_municipio;
         $comercio->save();
 
-        $request->session()->put('nit', $comercio->nit);
+        $sucursal = Sucursal::find($id_sucursal);
+        if ($sucursal == null) {
+            $sucursal = new Sucursal();
+        }
+
+        $sucursal->nombre = $nombre_sucursal;
+        //dd($nombre_sucursal);
+        $sucursal->direccion = $direccion;
+        $sucursal->telefono = $telefono;
+        $sucursal->id_municipio = $id_municipio;        
+        $sucursal->nit_comercio = $comercio->nit;
+        $sucursal->save();
+
+        $request->session()->put('id_sucursal', $sucursal->id);
+        $request->session()->save();
         return redirect('/queja/detalle');  
     }    
 
@@ -163,15 +223,20 @@ class PublicController extends Controller
         $detalle_solucion = $request->input('detalle_solucion');        
 
         $dpi = $request->session()->get('dpi');
-        $nit = $request->session()->get('nit');
+        $id_sucursal = $request->session()->get('id_sucursal');
         
         $queja = new Queja();                
         $queja->factura = $factura;
         $queja->fecha_factura = $fecha_factura;
         $queja->detalle_queja = $detalle_queja;
         $queja->detalle_solucion = $detalle_solucion;
-        $queja->nit_comercio = $nit;
-        $queja->dpi_consumidor = $dpi;
+        $queja->id_sucursal = $id_sucursal;
+        //dd($id_sucursal);
+
+        if ($dpi != 'na') {
+            $queja->dpi_consumidor = $dpi;
+        }
+
         $queja->save();
 
         return redirect('/queja/final/' . $queja->id);

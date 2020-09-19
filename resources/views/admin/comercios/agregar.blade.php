@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                 	<a href="{{url('/comercios/index')}}" class="btn btn-primary float-right">Regresar</a>
-                	<h3>{{ __('Agregar comercio') }}</h3>
+                	<h3>{{ isset($id) ? 'Actualizar comercio' : 'Agregar comercio'}}</h3>
                 </div>
 
                 <div class="card-body">
@@ -24,12 +24,17 @@
 
                         <div class="form-group">
                             {{Form::label('nit', 'NIT')}}
-                            {{Form::text('nit', $nit ?? '',['class' => 'form-control', 'required' => 'required'])}}
+                            {{Form::text('nit', $nit ?? '',['class' => 'form-control identificacion', 'required' => 'required'])}}
                         </div>
 
                         <div class="form-group">
                             {{Form::label('nombre', 'Nombre')}}
                             {{Form::text('nombre', $nombre ?? '',['class' => 'form-control', 'required' => 'required'])}}
+                        </div>
+
+                        <div class="form-group">
+                            {{Form::label('nombre_sucursal', 'Sucursal')}}
+                            {{Form::text('nombre_sucursal', $nombre_sucursal ?? '',['class' => 'form-control', 'required' => 'required'])}}
                         </div>
 
                         <div class="form-group">
@@ -52,7 +57,7 @@
                             {!! Form::select('id_municipio', $listaMunicipios, $id_municipio ?? null, ['class' => 'form-control']) !!}
                         </div>
 
-                        {{Form::submit('Agregar',['class' => 'btn btn-primary float-right'])}}
+                        {{Form::submit(isset($id) ? 'Actualizar' : 'Agregar',['class' => 'btn btn-primary float-right'])}}
                     {{ Form::close() }}
                 </div>
             </div>

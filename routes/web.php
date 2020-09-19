@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 // Rutas de la entidad 'Comercio'
-Route::get('/comercios/index', 'ComerciosController@index')->middleware('auth');
+Route::get('/comercios/index/{q?}', 'ComerciosController@index')->middleware('auth');
 Route::get('/comercios/agregar', 'ComerciosController@agregar')->middleware('auth');
 Route::get('/comercios/editar/{id?}', 'ComerciosController@agregar')->middleware('auth');
 Route::post('/comercios/guardar', 'ComerciosController@guardar')->middleware('auth');
@@ -32,7 +32,7 @@ Route::get('/reportes/obtener', 'ReportesController@obtenerDatos')->middleware('
 
 
 // Rutas para quejas
-Route::get('/quejas/index', 'QuejasController@index')->middleware('auth');
+Route::get('/quejas/index/{q?}', 'QuejasController@index')->middleware('auth');
 Route::get('/quejas/detalles/{id}', 'QuejasController@detalles')->middleware('auth');
 
 

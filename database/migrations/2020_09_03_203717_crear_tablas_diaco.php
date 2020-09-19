@@ -44,13 +44,21 @@ class CrearTablasDiaco extends Migration
 
         Schema::create('comercios', function (Blueprint $table) {            
             $table->integer('nit');
+            $table->string('nombre');            
+            $table->timestamps();
+            $table->primary('nit');
+        });
+
+        Schema::create('sucursales', function (Blueprint $table) {                        
+            $table->id();
             $table->string('nombre');
             $table->string('direccion');
             $table->integer('telefono');
+            $table->integer('nit_comercio');
+            $table->foreign('nit_comercio')->references('nit')->on('comercios');
             $table->unsignedBigInteger('id_municipio');            
             $table->foreign('id_municipio')->references('id')->on('municipios');
             $table->timestamps();
-            $table->primary('nit');
         });
 
         Schema::create('quejas', function (Blueprint $table) {
@@ -59,8 +67,8 @@ class CrearTablasDiaco extends Migration
             $table->longText('detalle_queja');
             $table->longText('detalle_solucion')->nullable();
             $table->date('fecha_factura');
-            $table->integer('nit_comercio');            
-            $table->foreign('nit_comercio')->references('nit')->on('comercios');
+            $table->unsignedBigInteger('id_sucursal');            
+            $table->foreign('id_sucursal')->references('id')->on('sucursales');
             $table->integer('dpi_consumidor')->nullable();            
             $table->foreign('dpi_consumidor')->references('dpi')->on('consumidores');
             $table->timestamps();
@@ -75,6 +83,7 @@ class CrearTablasDiaco extends Migration
     public function down()
     {                
         Schema::dropIfExists('quejas');
+        Schema::dropIfExists('sucursales');
         Schema::dropIfExists('comercios');
         Schema::dropIfExists('consumidores');
         Schema::dropIfExists('municipios');

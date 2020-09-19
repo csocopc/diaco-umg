@@ -16,4 +16,9 @@ class Comercio extends Model
     {
     	return $this->belongsTo('App\Municipio', 'id_municipio');
     }
+
+    public function sucursales()
+    {
+        return $this->hasMany(Sucursal::class, 'nit_comercio');
+    }
 }

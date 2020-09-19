@@ -20,36 +20,38 @@
 
                             <div class="form-row">                                
                                 <div class="form-group col-md-6">
-                                    {{Form::label('nit', 'NIT')}}
-                                    {{Form::text('nit', $nit ?? '',['class' => 'form-control', 'required' => 'required'])}}
-                                </div>                                
-                            </div>
-                            <div class="form-row">                                
-                                <div class="form-group col-md-6">
-                                    {{Form::label('dpi', 'Documento de identification')}}
-                                    {{Form::text('dpi', $dpi ?? '',['class' => 'form-control', 'required' => 'required'])}}
+                                    {{Form::label('dpi', 'Documento de identificacion')}}
+                                    {{Form::number('dpi', $dpi ?? '',['class' => 'form-control identificacion'])}}
                                 </div>
                             </div>
+                            
+                            <div class="form-row">                                
+                                <div class="form-group col-md-6">
+                                    {{Form::label('nit', 'NIT')}}
+                                    {{Form::number('nit', $nit ?? '',['class' => 'form-control'])}}
+                                </div>                                
+                            </div>
+                            
                             <div class="form-row">                                
                                 <div class="form-group col-md-6">
                                     {{Form::label('nombres', 'Nombres')}}
-                                    {{Form::text('nombres', $nombres ?? '',['class' => 'form-control', 'required' => 'required'])}}
+                                    {{Form::text('nombres', $nombres ?? '',['class' => 'form-control'])}}
                                 </div>
                                 <div class="form-group col-md-6">
                                     {{Form::label('apellidos', 'Apellidos')}}
-                                    {{Form::text('apellidos', $apellidos ?? '',['class' => 'form-control', 'required' => 'required'])}}
+                                    {{Form::text('apellidos', $apellidos ?? '',['class' => 'form-control'])}}
                                 </div>
                             </div>
                             <div class="form-row">                                
                                 <div class="form-group col-md-6">
                                     {{Form::label('direccion', 'Direccion')}}
-                                    {{Form::text('direccion', $direccion ?? '',['class' => 'form-control', 'required' => 'required'])}}
+                                    {{Form::text('direccion', $direccion ?? '',['class' => 'form-control'])}}
                                 </div>
                             </div>
                             <div class="form-row">                                
                                 <div class="form-group col-md-6">
                                     {{Form::label('id_departamento', 'Departamento')}}
-                                    {!! Form::select('id_departamento', $departamentos, $id_departamento ?? null, ['class' => 'form-control']) !!}
+                                    {{Form::select('id_departamento', $departamentos, $id_departamento ?? null, ['class' => 'form-control'])}}
                                 </div>
                                 <div class="form-group col-md-6">
                                     {{Form::label('id_municipio', 'Municipio')}}
@@ -59,7 +61,7 @@
                             <div class="form-row">                                
                                 <div class="form-group col-md-6">
                                     {{Form::label('telefono', 'Telefono')}}
-                                    {{Form::text('telefono', $telefono ?? '',['class' => 'form-control', 'required' => 'required'])}}
+                                    {{Form::number('telefono', $telefono ?? '',['class' => 'form-control number-length', 'minlength' => 8, 'maxlength' => 8])}}
                                 </div>                                
                                 <div class="form-group col-md-6">
                                     {{Form::label('genero', 'Genero')}}

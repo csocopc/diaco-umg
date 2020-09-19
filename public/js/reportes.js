@@ -9,8 +9,8 @@ $( document ).ready(function() {
 		     data: datos,
 		     dataType: "json",
 		     success: function(data) {
-		     	generarGraficaCircular(data.circular);
-		     	generarGraficaBarras(data.barras);
+		     	generarGraficaCircular(data.circular, data.general);
+		     	generarGraficaBarras(data.barras, data.general);
 		        console.log(data);
 		     },
 		     error: function() {
@@ -20,7 +20,7 @@ $( document ).ready(function() {
     });
 
 
-    function generarGraficaCircular(datos)
+    function generarGraficaCircular(datos, general)
     {
 		google.charts.load("current", {packages:["corechart"]});
 		google.charts.setOnLoadCallback(drawChart);
@@ -38,28 +38,29 @@ $( document ).ready(function() {
 		}
     }
 
-    function generarGraficaBarras(datos)
+    function generarGraficaBarras(datos, general)
     {
 		google.charts.load('current', {packages: ['corechart', 'bar']});
 		google.charts.setOnLoadCallback(drawBasic);
 
 		function drawBasic() {
-				datos.unshift(['Nombre', 'Numero de Quejas', { role: 'style' }]);
-		      var data = google.visualization.arrayToDataTable(datos);
+			datos.unshift(['Nombre', 'Numero de Quejas', { role: 'style' }]);
+	      var data = google.visualization.arrayToDataTable(datos);
 
-		      var options = {
-		        title: 'Diaco en Linea',
-		        chartArea: {width: '50%'},
-		        hAxis: {
-		          title: 'Reporte de Quejas',
-		          minValue: 0
-		        },
-		        isStacked: true
-		      };
 
-		      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+	      var options = {
+	        title: 'Diaco en Linea - Total de Quejas: ' + general.total,
+	        chartArea: {width: '50%'},
+	        hAxis: {
+	          title: 'Reporte de Quejas ' + ((general.inicio) ? ' Desde: ' + general.inicio : '')  + ((general.fin) ? ' Hasta: ' + general.fin : ''),
+	          minValue: 0
+	        },
+	        isStacked: true
+	      };
 
-		      chart.draw(data, options);
-		    }
+	      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+	      chart.draw(data, options);
+	    }
     }
 });
