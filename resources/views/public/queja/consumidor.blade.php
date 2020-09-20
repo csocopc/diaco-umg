@@ -21,7 +21,7 @@
                             <div class="form-row">                                
                                 <div class="form-group col-md-6">
                                     {{Form::label('dpi', 'Documento de identificacion')}}
-                                    {{Form::number('dpi', $dpi ?? '',['class' => 'form-control identificacion'])}}
+                                    {{Form::number('dpi', $dpi ?? '',['class' => 'form-control identificacion', 'required' => 'required'])}}
                                 </div>
                             </div>
                             
@@ -35,17 +35,17 @@
                             <div class="form-row">                                
                                 <div class="form-group col-md-6">
                                     {{Form::label('nombres', 'Nombres')}}
-                                    {{Form::text('nombres', $nombres ?? '',['class' => 'form-control'])}}
+                                    {{Form::text('nombres', $nombres ?? '',['class' => 'form-control', 'required' => 'required'])}}
                                 </div>
                                 <div class="form-group col-md-6">
                                     {{Form::label('apellidos', 'Apellidos')}}
-                                    {{Form::text('apellidos', $apellidos ?? '',['class' => 'form-control'])}}
+                                    {{Form::text('apellidos', $apellidos ?? '',['class' => 'form-control', 'required' => 'required'])}}
                                 </div>
                             </div>
                             <div class="form-row">                                
                                 <div class="form-group col-md-6">
                                     {{Form::label('direccion', 'Direccion')}}
-                                    {{Form::text('direccion', $direccion ?? '',['class' => 'form-control'])}}
+                                    {{Form::text('direccion', $direccion ?? '',['class' => 'form-control', 'required' => 'required'])}}
                                 </div>
                             </div>
                             <div class="form-row">                                
@@ -69,9 +69,15 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary float-right">
-                                Siguiente <img src="https://www.iconfinder.com/data/icons/essentials-pack/96/right_arrow_next_forward_navigation-24.png">
-                            </button>
+                            <hr>
+                            <div class="form-row float-right">
+                                <button type="button" class="btn btn-primary mx-3" id="btn-anonimo">
+                                    Crear Queja Como Usuario Anónimo<img src="https://cdn2.iconfinder.com/data/icons/social-hand-drawn-icons/64/social_10-24.png">
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    Siguiente <img src="https://www.iconfinder.com/data/icons/essentials-pack/96/right_arrow_next_forward_navigation-24.png">
+                                </button>
+                            </div>
 
                         {{ Form::close() }}                        
                     </div>

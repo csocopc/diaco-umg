@@ -83,35 +83,35 @@ class PublicController extends Controller
         $genero = $request->input('genero');
         $id_municipio = $request->input('id_municipio');
 
-        if (!empty($dpi)) {
-            $consumidor = Consumidor::find($dpi);            
-            if ($consumidor == null && 
-                !empty($dpi) &&
-                !empty($nombres) &&
-                !empty($apellidos) &&
-                !empty($direccion) &&
-                !empty($telefono) &&
-                !empty($genero) &&
-                !empty($id_municipio))  // el consumidor no esta registrado
-            {
-                $consumidor = new Consumidor();                
-            }
+        if ($request->has('anonimo')) 
+        {
+            $dpi = null;
+        } 
+        else
+        {
+            if (!empty($dpi)) {
+                $consumidor = Consumidor::find($dpi);            
+                if ($consumidor == null)  // el consumidor no esta registrado
+                {
+                    $consumidor = new Consumidor();                
+                }
 
-            if ($consumidor != null) {
-                // GUARDAR Informacion.
-                $consumidor->dpi = $dpi;
-                $consumidor->nit = $nit;
-                $consumidor->nombres = $nombres;
-                $consumidor->apellidos = $apellidos;
-                $consumidor->direccion = $direccion;
-                $consumidor->telefono = $telefono;
-                $consumidor->genero = $genero;
-                $consumidor->id_municipio = $id_municipio;
-                $consumidor->save();
-            }                
-        }      
+                if ($consumidor != null) {
+                    // GUARDAR Informacion.
+                    $consumidor->dpi = $dpi;
+                    $consumidor->nit = $nit;
+                    $consumidor->nombres = $nombres;
+                    $consumidor->apellidos = $apellidos;
+                    $consumidor->direccion = $direccion;
+                    $consumidor->telefono = $telefono;
+                    $consumidor->genero = $genero;
+                    $consumidor->id_municipio = $id_municipio;
+                    $consumidor->save();
+                }                
+            }      
+        }            
 
-        $request->session()->put('dpi', (isset($dpi)) ? $dpi : 'na');
+        $request->session()->put('dpi', (isset($dpi) && !is_null($dpi)) ? $dpi : 'na');
         $request->session()->save();
         return redirect('/queja/comercio');  
     }    
@@ -195,12 +195,11 @@ class PublicController extends Controller
             $sucursal = new Sucursal();
         }
 
-        $sucursal->nombre = $nombre_sucursal;
-        //dd($nombre_sucursal);
+        $sucursal->nombre = $nombre_sucursal;        
         $sucursal->direccion = $direccion;
         $sucursal->telefono = $telefono;
         $sucursal->id_municipio = $id_municipio;        
-        $sucursal->nit_comercio = $comercio->nit;
+        $sucursal->nit_comercio = $nit;
         $sucursal->save();
 
         $request->session()->put('id_sucursal', $sucursal->id);
@@ -230,11 +229,14 @@ class PublicController extends Controller
         $queja->fecha_factura = $fecha_factura;
         $queja->detalle_queja = $detalle_queja;
         $queja->detalle_solucion = $detalle_solucion;
-        $queja->id_sucursal = $id_sucursal;
-        //dd($id_sucursal);
+        $queja->id_sucursal = $id_sucursal;        
 
         if ($dpi != 'na') {
             $queja->dpi_consumidor = $dpi;
+        }
+        else 
+        {
+            $queja->dpi_consumidor = null;
         }
 
         $queja->save();

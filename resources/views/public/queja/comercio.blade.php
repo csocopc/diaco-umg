@@ -86,6 +86,7 @@
                             </div>
                         </div>                                                
 
+                        <hr>
                         <button type="submit" class="btn btn-primary float-right">
                             Siguiente <img src="https://www.iconfinder.com/data/icons/essentials-pack/96/right_arrow_next_forward_navigation-24.png">
                         </button>

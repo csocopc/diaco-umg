@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
         DB::table('municipios')->insert(['nombre' => 'Chinautla', 'id_departamento' => $id]);
         DB::table('municipios')->insert(['nombre' => 'Chuarrancho', 'id_departamento' => $id]);
         DB::table('municipios')->insert(['nombre' => 'Fraijanes', 'id_departamento' => $id]);
-        DB::table('municipios')->insert(['nombre' => 'Guatemala City', 'id_departamento' => $id]);
+        DB::table('municipios')->insert(['nombre' => 'Ciudad de Guatemala', 'id_departamento' => $id]);
         DB::table('municipios')->insert(['nombre' => 'Mixco', 'id_departamento' => $id]);
         DB::table('municipios')->insert(['nombre' => 'Palencia', 'id_departamento' => $id]);
         DB::table('municipios')->insert(['nombre' => 'San Miguel Petapa', 'id_departamento' => $id]);

@@ -17,8 +17,8 @@
 
                 <div class="card-body">
                     <form class="form-inline my-2 my-lg-0" id="frm-buscar-queja" >
-                        <input id="search" class="form-control mr-sm-4 col-md-4" type="search" placeholder="Search" aria-label="Search" value="{{$q ?? ''}}">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <input id="search" class="form-control mr-sm-4 col-md-4" type="search" placeholder="Buscar" aria-label="Buscar" value="{{$q ?? ''}}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                     </form>
                     <hr>
                     <table class="table table-striped table-bordered table-sm">

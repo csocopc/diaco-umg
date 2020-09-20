@@ -61,4 +61,19 @@ $( document ).ready(function() {
 			this.value = this.value.slice(0, this.maxLength);
 		}
     });
+
+
+    $( "#btn-anonimo" ).on('click', function(e) {    
+    	e.preventDefault();
+		var formulario = $( this ).closest('form');
+
+		$('<input>').attr({
+		    type: 'hidden',
+		    name: 'anonimo',
+		    value: '1'
+		}).appendTo(formulario);
+
+		var url = formulario.attr('action');
+		formulario.submit();
+    });
 });
