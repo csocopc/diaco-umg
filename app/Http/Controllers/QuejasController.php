@@ -38,6 +38,7 @@ class QuejasController extends Controller
                     ->orWhere('departamentos.nombre', 'like', '%' . $q . '%')
                     ->orWhere('consumidores.nombres', 'like', '%' . $q . '%')
                     ->orWhere('consumidores.apellidos', 'like', '%' . $q . '%')
+                    ->select(array('quejas.id as id_queja'))
                     ->get()->sortByDesc('created_at');                       
         }
         else 

@@ -34,7 +34,9 @@ class ComerciosController extends Controller
                 ->orWhere('departamentos.nombre', 'like', '%' . $q . '%')
                 ->orWhere('comercios.nombre', 'like', '%' . $q . '%')
                 ->orWhere('comercios.nit', 'like', '%' . $q . '%')
+                ->select(array('sucursales.id as id_sucursal'))
                 ->get()->sortByDesc('created_at');           
+                //dd($sucursal->first());
         }      
         else 
         {

@@ -34,6 +34,11 @@
                         </thead>
                         <tbody>
                             @foreach ($quejas as $queja)
+                                @if (isset($queja->id_queja))
+                                    @php
+                                        $queja = App\Queja::find($queja->id_queja);
+                                    @endphp
+                                @endif
                                 <tr>
                                     <td>{{$queja->factura}}</td>
                                     <td>{{$queja->fecha_factura->toFormattedDateString()}}</td>

@@ -37,6 +37,13 @@
                         </thead>
                         <tbody>
                             @foreach ($sucursal as $sucursal)
+
+                            @if (isset($sucursal->id_sucursal))
+                                @php
+                                    $sucursal = App\Sucursal::find($sucursal->id_sucursal);
+                                @endphp
+                            @endif
+
                                 <tr>
                                     <td>{{$sucursal->comercio->nit}}</td>
                                     <td>{{$sucursal->comercio->nombre}}</td>
