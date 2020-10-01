@@ -118,7 +118,7 @@ class PublicController extends Controller
 
     public function comercio (Request $request) 
     {    
-        if ($request->has('identificador-actualizado')) 
+        if ($request->has('identificador-actualizado') || $request->has('identificador-sucursal-actualizado')) 
         {
            $comercio = Comercio::find($request->input('nit'));
            if ($comercio != null ) {
@@ -127,8 +127,27 @@ class PublicController extends Controller
                 $sucursales = $comercio->sucursales->pluck('nombre', 'id');
            }
 
-           $sucursal = Sucursal::find($request->input('id_sucursal'));
-           if ($sucursal != null) {
+           $sucId = null;
+
+           if ($request->has('identificador-sucursal-actualizado')) 
+           {
+               $sucId = $request->input('id_sucursal');
+           }
+           else 
+           {
+                if ($comercio != null && $comercio->sucursales->count() > 0) 
+                {
+                     $sucId = $comercio->sucursales->first()->id;            
+                }
+                else 
+                {
+                     $sucId = $request->input('id_sucursal');
+                }
+           }           
+
+           $sucursal = Sucursal::find($sucId);
+
+           if ($sucursal != null) {            
                 $direccion = $sucursal->direccion;
                 $telefono = $sucursal->telefono;        
                 $id_municipio = $sucursal->id_municipio;                

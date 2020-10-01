@@ -5,13 +5,13 @@ $( document ).ready(function() {
 		valor = $("input[name='tipoSucursal']:checked").val();
 		if (valor == 'nueva') 
 		{
-			$("#nombre_sucursal").removeAttr('disabled');
-			$("#id_sucursal").attr('disabled', 'disabled');
+			$("#nombre_sucursal").removeAttr('readonly');
+			$("#id_sucursal").attr('readonly', 'readonly');
 		}
 		else 
 		{
-			$("#nombre_sucursal").attr('disabled', 'disabled');
-			$("#id_sucursal").removeAttr('disabled');
+			$("#nombre_sucursal").attr('readonly', 'readonly');
+			$("#id_sucursal").removeAttr('readonly');
 		}			
 	}
 
@@ -19,13 +19,13 @@ $( document ).ready(function() {
 		var valor = $(this).val();			
 		if (valor == 'nueva') 
 		{
-			$("#nombre_sucursal").val("").removeAttr('disabled');			
-			$("#id_sucursal").val("").attr('disabled', 'disabled');					
+			$("#nombre_sucursal").val("").removeAttr('readonly');			
+			$("#id_sucursal").val("").attr('readonly', 'readonly');					
 		}
 		else 
 		{
-			$("#nombre_sucursal").val("").attr('disabled', 'disabled');
-			$("#id_sucursal").val("").removeAttr('disabled');			
+			$("#nombre_sucursal").val("").attr('readonly', 'readonly');
+			$("#id_sucursal").val("").removeAttr('readonly');			
 		}
 	});
 
@@ -53,6 +53,19 @@ $( document ).ready(function() {
     });
 
 
+    $( ".identificacion-sucursal" ).change(function() {
+		var formulario = $( this ).closest('form');
+
+		$('<input>').attr({
+		    type: 'hidden',
+		    name: 'identificador-sucursal-actualizado',
+		    value: '1'
+		}).appendTo(formulario);
+
+		var url = formulario.attr('action');
+		formulario.attr('action', url.replace('-guardar', ''));
+		formulario.submit();
+    });
 
 
 

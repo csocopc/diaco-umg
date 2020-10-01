@@ -30,7 +30,7 @@
                             </div>                   
                         </div>
 
-                        <h2>Sucursal {{$id_sucursal . "a"}}</h2>
+                        <h2>Sucursal</h2>
                         <div class="form-row">
                             <div class="form-group col-md-3"></div>
                             <div class="form-group col-md-6 text-center">
@@ -48,7 +48,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{Form::Label('id_sucursal', 'Sucursal')}}
-                                {{Form::select('id_sucursal', $sucursales, $id_sucursal ?? null, ['class' => 'form-control identificacion'])}}
+                                {{Form::select('id_sucursal', $sucursales, $id_sucursal ?? null, ['class' => 'form-control identificacion-sucursal'])}}
                             </div>
                             <div class="form-group col-md-6">
                                 {{Form::label('nombre_sucursal', 'Nombre')}}
