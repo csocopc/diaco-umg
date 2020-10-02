@@ -4,18 +4,17 @@ $( document ).ready(function() {
 
 		var datos = $(this).serialize();
 		 $.ajax({
-		     type: "POST",
-		     url: $(this).attr('action'),
-		     data: datos,
-		     dataType: "json",
-		     success: function(data) {
+		    type: "POST",
+		    url: $(this).attr('action'),
+		    data: datos,
+		    dataType: "json",
+		    success: function(data) {
 		     	generarGraficaCircular(data.circular, data.general);
-		     	generarGraficaBarras(data.barras, data.general);
-		        console.log(data);
-		     },
-		     error: function() {
-		         alert('error handling here');
-		     }
+		     	generarGraficaBarras(data.barras, data.general);		        
+		    },
+		    error: function() {
+				alert('error handling here');
+		    }
 		 });    
     });
 
@@ -29,11 +28,16 @@ $( document ).ready(function() {
     		var data = google.visualization.arrayToDataTable(datos);		
 
     		var options = {
-    		  title: 'Reporte de Quejas en Porcentajes',
-    		  pieHole: 0.4,
+				title: 'Reporte de Quejas en Porcentajes',
+		  		pieHole: 0,
+    		  	is3D: true,
+    		  	chartArea: {
+    		  		width:'80%',
+    		  		height:'70%'
+    		  	}
     		};
 
-    		var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    		var chart = new google.visualization.PieChart(document.getElementById('grafica-circular'));
     		chart.draw(data, options);
 		}
     }
@@ -45,22 +49,24 @@ $( document ).ready(function() {
 
 		function drawBasic() {
 			datos.unshift(['Nombre', 'Numero de Quejas', { role: 'style' }]);
-	      var data = google.visualization.arrayToDataTable(datos);
+	      	var data = google.visualization.arrayToDataTable(datos);
 
+	      	var options = {
+	        	title: 'Diaco en Linea - Total de Quejas: ' + general.total,
+	        	chartArea: {
+	        		width: '50%', 
+	        		left:400
+	        	},
+	        	legend: { position: 'none' },
+	        	hAxis: {
+	          		title: 'Reporte de Quejas ' + ((general.inicio) ? ' Desde: ' + general.inicio : '')  + ((general.fin) ? ' Hasta: ' + general.fin : ''),
+	          		minValue: 1
+		        },
+		        isStacked: true
+		    };
 
-	      var options = {
-	        title: 'Diaco en Linea - Total de Quejas: ' + general.total,
-	        chartArea: {width: '50%'},
-	        hAxis: {
-	          title: 'Reporte de Quejas ' + ((general.inicio) ? ' Desde: ' + general.inicio : '')  + ((general.fin) ? ' Hasta: ' + general.fin : ''),
-	          minValue: 0
-	        },
-	        isStacked: true
-	      };
-
-	      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-
-	      chart.draw(data, options);
+			var chart = new google.visualization.BarChart(document.getElementById('grafica-barras'));
+	    	chart.draw(data, options);
 	    }
     }
 });

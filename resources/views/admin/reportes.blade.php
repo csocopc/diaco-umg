@@ -43,9 +43,9 @@
 
                 </div>
 
-                <div id="chart_div" style="width: auto; height: 350px;"></div>
+                <div id="grafica-barras" style="width: auto; height: 350px;"></div>
                 <hr>
-                <div id="donutchart" style="width: auto; height: 350px;"></div>
+                <div id="grafica-circular" style="width: auto; height: 500px;"></div>
             </div>
         </div>
     </div>
