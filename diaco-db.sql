@@ -19,6 +19,10 @@
 -- Current Database: `diaco-umg`
 --
 
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `diaco-umg` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `diaco-umg`;
+
 --
 -- Table structure for table `comercios`
 --
@@ -41,6 +45,7 @@ CREATE TABLE `comercios` (
 
 LOCK TABLES `comercios` WRITE;
 /*!40000 ALTER TABLE `comercios` DISABLE KEYS */;
+INSERT INTO `comercios` VALUES (111,'Tiendas MAX','2020-10-01 11:08:59','2020-10-01 11:08:59'),(222,'iShop','2020-10-01 11:24:41','2020-10-01 11:24:41'),(333,'Pollo Campero','2020-10-01 11:26:34','2020-10-01 11:26:34'),(444,'FFACSA','2020-10-03 02:18:37','2020-10-03 02:18:37');
 /*!40000 ALTER TABLE `comercios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,6 +79,7 @@ CREATE TABLE `consumidores` (
 
 LOCK TABLES `consumidores` WRITE;
 /*!40000 ALTER TABLE `consumidores` DISABLE KEYS */;
+INSERT INTO `consumidores` VALUES (111,'111','Carlos','Perez','1ra calle 5-35 zona 1',11111111,1,224,'2020-10-01 11:24:00','2020-10-01 11:24:00'),(222,'222','Jorge','Hernandez','9A Avenida',12312321,1,26,'2020-10-01 11:57:03','2020-10-01 11:57:03'),(333,'333','Jhonathan','Socop','1ra calle 5-92',32424324,1,39,'2020-10-01 12:01:22','2020-10-01 12:01:22'),(444,'444','Veronica','Castro','1  calle 15-20 z. 2',11111111,2,30,'2020-10-03 02:08:17','2020-10-03 02:08:17'),(555,'555','Mayra','Perez','1-75 Zona 6',55555555,1,7,'2020-10-03 02:34:57','2020-10-03 02:34:57');
 /*!40000 ALTER TABLE `consumidores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +149,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +158,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (13,'2014_10_12_000000_create_users_table',1),(14,'2014_10_12_100000_create_password_resets_table',1),(15,'2019_08_19_000000_create_failed_jobs_table',1),(16,'2020_09_03_203717_crear_tablas_diaco',1);
+INSERT INTO `migrations` VALUES (17,'2014_10_12_000000_create_users_table',1),(18,'2014_10_12_100000_create_password_resets_table',1),(19,'2019_08_19_000000_create_failed_jobs_table',1),(20,'2020_09_03_203717_crear_tablas_diaco',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +237,7 @@ CREATE TABLE `quejas` (
   KEY `quejas_dpi_consumidor_foreign` (`dpi_consumidor`),
   CONSTRAINT `quejas_dpi_consumidor_foreign` FOREIGN KEY (`dpi_consumidor`) REFERENCES `consumidores` (`dpi`),
   CONSTRAINT `quejas_id_sucursal_foreign` FOREIGN KEY (`id_sucursal`) REFERENCES `sucursales` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,6 +246,7 @@ CREATE TABLE `quejas` (
 
 LOCK TABLES `quejas` WRITE;
 /*!40000 ALTER TABLE `quejas` DISABLE KEYS */;
+INSERT INTO `quejas` VALUES (1,33659236,'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2020-09-15',1,NULL,'2020-10-01 11:12:27','2020-10-01 11:12:27'),(2,265482,'Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua.','2020-09-16',2,111,'2020-10-01 11:25:08','2020-10-01 11:25:08'),(3,245689421,'sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit','laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat','2020-09-15',3,NULL,'2020-10-01 11:26:57','2020-10-01 11:26:57'),(4,55815648,'esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2020-09-15',4,NULL,'2020-10-01 11:56:07','2020-10-01 11:56:07'),(5,9988777,'a aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occa','et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2020-09-16',5,222,'2020-10-01 11:58:04','2020-10-01 11:58:04'),(6,3354223,'is nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepte','ore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mol','2020-09-22',6,NULL,'2020-10-01 11:59:29','2020-10-01 11:59:29'),(7,1122313,'adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi','in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Exc','2020-09-18',2,333,'2020-10-01 12:02:18','2020-10-01 12:02:18'),(8,231231,'Prueba','Solucion','2020-09-21',1,111,'2020-10-01 12:04:17','2020-10-01 12:04:17'),(9,1323332,'met, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor','et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor','2020-09-09',2,333,'2020-10-01 12:05:06','2020-10-01 12:05:06'),(10,123213,'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','2020-09-22',2,NULL,'2020-10-01 12:21:11','2020-10-01 12:21:11'),(11,213123,'uis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nu','uis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nuuis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nu','2020-09-19',2,NULL,'2020-10-01 12:21:41','2020-10-01 12:21:41'),(12,234324324,'boris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in repr','boris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in repr','2020-09-22',5,222,'2020-10-01 12:28:10','2020-10-01 12:28:10'),(13,55532223,'eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia dese','eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deseeu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia dese','2020-09-20',4,111,'2020-10-01 12:29:02','2020-10-01 12:29:02'),(14,776776,'in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur.','in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur.','2020-09-24',7,NULL,'2020-10-01 12:31:02','2020-10-01 12:31:02'),(15,123213213,'No enviaron todo lo que pedi pero si me lo cobraron.','QUe me devuelvan la parte que no me enviaron.','2020-10-01',5,444,'2020-10-03 02:09:38','2020-10-03 02:09:38'),(16,9865888,'Hice una compra de piso, hicieron la entrega del producto a mi casa pero cuando lo revise los pisos estaban rotos.','Que me cambien el producto por pisos en buen estado.','2020-10-01',8,444,'2020-10-03 02:20:01','2020-10-03 02:20:01'),(17,7584578,'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,','quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse','2020-10-01',6,555,'2020-10-03 02:35:38','2020-10-03 02:35:38');
 /*!40000 ALTER TABLE `quejas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,7 +271,7 @@ CREATE TABLE `sucursales` (
   KEY `sucursales_id_municipio_foreign` (`id_municipio`),
   CONSTRAINT `sucursales_id_municipio_foreign` FOREIGN KEY (`id_municipio`) REFERENCES `municipios` (`id`),
   CONSTRAINT `sucursales_nit_comercio_foreign` FOREIGN KEY (`nit_comercio`) REFERENCES `comercios` (`nit`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,6 +280,7 @@ CREATE TABLE `sucursales` (
 
 LOCK TABLES `sucursales` WRITE;
 /*!40000 ALTER TABLE `sucursales` DISABLE KEYS */;
+INSERT INTO `sucursales` VALUES (1,'MAX Amatitlan','9A Avenida',11111111,111,53,'2020-10-01 11:08:59','2020-10-01 12:10:06'),(2,'Majadas','21 avenida 4-32 zona 11',33333333,222,57,'2020-10-01 11:24:41','2020-10-01 12:10:14'),(3,'Miraflores','21 avenida 4-32 zona 11',33333333,333,57,'2020-10-01 11:26:34','2020-10-01 11:26:34'),(4,'Pradera Chimaltenango','1-75 Zona 6',11111111,111,27,'2020-10-01 11:55:44','2020-10-01 11:55:44'),(5,'Pradera Chimaltenango','1-75 Zona 6',12313215,333,27,'2020-10-01 11:57:47','2020-10-01 11:57:47'),(6,'Plaza Magdalena','1  calle 15-20 z. 2',64564456,333,3,'2020-10-01 11:59:09','2020-10-01 11:59:09'),(7,'Plaza Magdalena','1ra calle 15-20 zona 2',45343434,111,3,'2020-10-01 12:30:41','2020-10-01 12:30:41'),(8,'FFACSA Zaragoza','9A Avenida',86868686,444,41,'2020-10-03 02:18:37','2020-10-03 02:18:37');
 /*!40000 ALTER TABLE `sucursales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -286,7 +294,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -303,7 +311,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@gmail.com','2020-09-20 00:57:31','$2y$10$CVyM/1X6/37eIOuShQjCleb4vBerw2V2t2ypUa4WKxHNe4eXMABjO','KBz7ZiE05m',NULL,NULL);
+INSERT INTO `users` VALUES (1,'admin','admin@gmail.com','2020-10-01 10:55:39','$2y$10$7okxDQGOPMfDRzwaUpmYb./.qM9d4aHAsbcDbZKL7MWnpf8Hzndm2','uqlzVbCida0gpv4ABt6ShssT1kqKSgGGZRdQ77MpHwQxLnzt1zjlw7OmRjN6',NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -316,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-19 12:58:29
+-- Dump completed on 2020-10-02 15:21:33
