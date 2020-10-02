@@ -19,10 +19,6 @@
 -- Current Database: `diaco-umg`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `diaco-umg` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `diaco-umg`;
-
 --
 -- Table structure for table `comercios`
 --
@@ -294,7 +290,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
