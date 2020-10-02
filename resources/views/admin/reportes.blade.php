@@ -43,7 +43,7 @@
 
                 </div>
 
-                <div id="grafica-barras" style="width: auto; height: 350px;"></div>
+                <div id="grafica-barras" style="width: 100%; height: 350px;"></div>
                 <hr>
                 <div id="grafica-circular" style="width: auto; height: 500px;"></div>
             </div>

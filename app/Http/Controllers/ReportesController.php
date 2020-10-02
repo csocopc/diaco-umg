@@ -72,7 +72,7 @@ class ReportesController extends Controller
 
                 $barras = $quejas->map(function ($item) {
                     $nombre = "$item->nombre - $item->nombre_sucursal";
-                    return [$nombre,$item->conteo, $this->random_color_part($nombre)];
+                    return [$nombre,$item->conteo, $this->random_color_part(("A" . $nombre))];
                 });
 
                 $datosDelReporte = ["circular" => $circular, "barras" => $barras, "general" => $datosGenerales];
@@ -88,7 +88,7 @@ class ReportesController extends Controller
 
                 $barras = $quejas->map(function ($item) {
                     $nombre = "$item->nombre_departamento - $item->nombre";
-                     return [$nombre,$item->conteo, $this->random_color_part($nombre)];
+                     return [$nombre,$item->conteo, $this->random_color_part(strtoupper($nombre))];
                 });
 
 
@@ -118,7 +118,7 @@ class ReportesController extends Controller
                 });
 
                 $barras = $quejas->map(function ($item) {
-                     return [$item->region,$item->conteo, $this->random_color_part($item->region)];
+                     return [$item->region,$item->conteo, $this->random_color_part(strtoupper($item->region))];
                 });
 
                 $datosDelReporte = ["circular" => $circular, "barras" => $barras, "general" => $datosGenerales];
